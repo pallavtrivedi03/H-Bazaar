@@ -24,6 +24,13 @@ class HomeViewModel {
         
     }
     
+    func fetchDataFromDB() {
+        let fetchedData = CoreDataManager.shared.fetchProducts()
+        if fetchedData.0.count == 0 || fetchedData.1.count == 0 {
+            getProducts()
+        }
+    }
+    
     func saveDataToDB(productsData: ProductsAPIResponseModel) {
         CoreDataManager.shared.saveProducts(productsData: productsData)
     }

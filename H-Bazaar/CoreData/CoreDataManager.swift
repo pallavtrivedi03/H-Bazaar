@@ -22,33 +22,45 @@ final class CoreDataManager {
         saveContext()
     }
     
+    func fetchProducts() -> ([Category],[Ranking]) {
+        do {
+            let categories = try managedObjectContext.fetch(Category.fetch()) 
+            let rankings = try managedObjectContext.fetch(Ranking.fetch()) 
+            return(categories,rankings)
+        } catch {
+            print("Exception occured while fetching data")
+        }
+        return([Category](),[Ranking]())
+    }
+    
+    
     private func prepareDataForDB(productsData: ProductsAPIResponseModel) {
         if let categoriesResponse = productsData.categories, categoriesResponse.count > 0 {
             for categoryResponse in categoriesResponse {
-                _ = createEntity(categoryResponse: categoryResponse)
+                _ = createCategoryEntity(categoryResponse: categoryResponse)
             }
             print("processed all categories")
         }
         
         if let rankings = productsData.rankings, rankings.count > 0 {
-            _ = createEntity(rankingsResponse: rankings)
+            _ = createRankingEntity(rankingsResponse: rankings)
             print("processed all rankings")
         }
     }
     
-    private func createEntity(categoryResponse: CategoriesResponseModel) -> Category {
+    private func createCategoryEntity(categoryResponse: CategoriesResponseModel) -> Category {
         let category = Category(context: self.managedObjectContext)
         category.id = Int16(categoryResponse.id ?? 0)
         category.name = categoryResponse.name
         
-        let products = createEntity(productsResponse: categoryResponse.products)
+        let products = createProductEntity(productsResponse: categoryResponse.products)
         category.products = NSSet(array: products)
-        category.childCategories = NSSet(array: createEntity(childCategoryResponse: categoryResponse.childCategories))
+        category.childCategories = NSSet(array: createChildCategoryEntity(childCategoryResponse: categoryResponse.childCategories))
         
         return category
     }
     
-    private func createEntity(productsResponse: [ProductResponseModel]?) -> [Product] {
+    private func createProductEntity(productsResponse: [ProductResponseModel]?) -> [Product] {
         var products = [Product]()
         guard let productsResponseArray = productsResponse else { return products }
         
@@ -58,11 +70,11 @@ final class CoreDataManager {
             product.name = productResponse.name ?? ""
             product.dateAdded = Helper.getDate(from: productResponse.date_added ?? "")
             
-            let variants = createEntity(variantsResponse: productResponse.variants)
+            let variants = createVariantEntity(variantsResponse: productResponse.variants)
             product.variants = NSSet(array: variants)
             
             if let taxResponse = productResponse.tax {
-                product.tax = createEntity(taxResponse: taxResponse)
+                product.tax = createTaxEntity(taxResponse: taxResponse)
             }
             
             products.append(product)
@@ -72,7 +84,7 @@ final class CoreDataManager {
         return products
     }
     
-    private func createEntity(variantsResponse: [VariantsResponseModel]?) -> [Variant] {
+    private func createVariantEntity(variantsResponse: [VariantsResponseModel]?) -> [Variant] {
         var variants = [Variant]()
         guard let variantResponseArray = variantsResponse else { return variants }
         
@@ -88,14 +100,14 @@ final class CoreDataManager {
         return variants
     }
     
-    private func createEntity(taxResponse: TaxResponseModel) -> Tax {
+    private func createTaxEntity(taxResponse: TaxResponseModel) -> Tax {
         let tax = Tax(context: self.managedObjectContext)
         tax.name = taxResponse.name ?? ""
         tax.value = taxResponse.value ?? 0.0
         return tax
     }
     
-    private func createEntity(childCategoryResponse: [Int]?) -> [ChildCategory] {
+    private func createChildCategoryEntity(childCategoryResponse: [Int]?) -> [ChildCategory] {
         var childCategoriesArray = [ChildCategory]()
         
         if let childCategories = childCategoryResponse {
@@ -108,7 +120,7 @@ final class CoreDataManager {
         return childCategoriesArray
     }
     
-    private func createEntity(productViewsResponse: [ProductViewsResponseModel]?) -> [ProductViews] {
+    private func createProductViewEntity(productViewsResponse: [ProductViewsResponseModel]?) -> [ProductViews] {
         
         var productViews = [ProductViews]()
         if let productViewsArray = productViewsResponse {
@@ -122,14 +134,14 @@ final class CoreDataManager {
         return productViews
     }
     
-    private func createEntity(rankingsResponse: [RankingsResponseModel]?) -> [Ranking] {
+    private func createRankingEntity(rankingsResponse: [RankingsResponseModel]?) -> [Ranking] {
         var rankings = [Ranking]()
         
         if let rankingsArray = rankingsResponse {
             for rankingResponse in rankingsArray {
                 let ranking = Ranking(context: self.managedObjectContext)
                 ranking.ranking = rankingResponse.ranking ?? ""
-                ranking.products = NSSet(array: createEntity(productViewsResponse: rankingResponse.products))
+                ranking.products = NSSet(array: createProductViewEntity(productViewsResponse: rankingResponse.products))
                 rankings.append(ranking)
             }
         }

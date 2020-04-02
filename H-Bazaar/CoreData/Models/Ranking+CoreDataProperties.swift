@@ -13,7 +13,7 @@ import CoreData
 
 extension Ranking {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Ranking> {
+    @nonobjc public class func fetch() -> NSFetchRequest<Ranking> {
         return NSFetchRequest<Ranking>(entityName: "Ranking")
     }
 

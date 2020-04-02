@@ -242,8 +242,8 @@
 			children = (
 				7BB0B54324362E190067798B /* ProductViews+CoreDataProperties.swift */,
 				7BB0B52724362D7D0067798B /* ProductViews+CoreDataClass.swift */,
-				7BB0B52924362D7D0067798B /* Category+CoreDataClass.swift */,
 				7BB0B52A24362D7D0067798B /* Category+CoreDataProperties.swift */,
+				7BB0B52924362D7D0067798B /* Category+CoreDataClass.swift */,
 				7BB0B52B24362D7D0067798B /* Variant+CoreDataClass.swift */,
 				7BB0B52C24362D7D0067798B /* Variant+CoreDataProperties.swift */,
 				7BB0B52D24362D7D0067798B /* Product+CoreDataClass.swift */,

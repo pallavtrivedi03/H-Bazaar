@@ -13,7 +13,7 @@ import CoreData
 
 extension Category {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Category> {
+    @nonobjc public class func fetch() -> NSFetchRequest<Category> {
         return NSFetchRequest<Category>(entityName: "Category")
     }
 
