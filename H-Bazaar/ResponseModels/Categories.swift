@@ -1,9 +1,9 @@
 
 import Foundation
-struct Categories : Codable {
+struct CategoriesResponseModel : Codable {
 	let id : Int?
 	let name : String?
-	let products : [Product]?
+	let products : [ProductResponseModel]?
 	let childCategories : [Int]?
 
 	enum CodingKeys: String, CodingKey {
@@ -18,7 +18,7 @@ struct Categories : Codable {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		id = try values.decodeIfPresent(Int.self, forKey: .id)
 		name = try values.decodeIfPresent(String.self, forKey: .name)
-		products = try values.decodeIfPresent([Product].self, forKey: .products)
+		products = try values.decodeIfPresent([ProductResponseModel].self, forKey: .products)
 		childCategories = try values.decodeIfPresent([Int].self, forKey: .childCategories)
 	}
 

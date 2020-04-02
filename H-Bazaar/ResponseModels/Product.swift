@@ -1,11 +1,11 @@
 
 import Foundation
-struct Product : Codable {
+struct ProductResponseModel : Codable {
 	let id : Int?
 	let name : String?
 	let date_added : String?
-	let variants : [Variants]?
-	let tax : Tax?
+	let variants : [VariantsResponseModel]?
+	let tax : TaxResponseModel?
 
 	enum CodingKeys: String, CodingKey {
 
@@ -21,8 +21,8 @@ struct Product : Codable {
 		id = try values.decodeIfPresent(Int.self, forKey: .id)
 		name = try values.decodeIfPresent(String.self, forKey: .name)
 		date_added = try values.decodeIfPresent(String.self, forKey: .date_added)
-		variants = try values.decodeIfPresent([Variants].self, forKey: .variants)
-		tax = try values.decodeIfPresent(Tax.self, forKey: .tax)
+		variants = try values.decodeIfPresent([VariantsResponseModel].self, forKey: .variants)
+		tax = try values.decodeIfPresent(TaxResponseModel.self, forKey: .tax)
 	}
 
 }

@@ -10,4 +10,21 @@ import Foundation
 
 class HomeViewModel {
     
+    
+    func getProducts() {
+        
+        weak var weakSelf = self
+        NetworkManager.shared.getProducts { (productsResponse) in
+            if let productsData = productsResponse {
+                weakSelf?.saveDataToDB(productsData: productsData)
+            } else {
+                //TODO: send callback to view for error
+            }
+        }
+        
+    }
+    
+    func saveDataToDB(productsData: ProductsAPIResponseModel) {
+        CoreDataManager.shared.saveProducts(productsData: productsData)
+    }
 }

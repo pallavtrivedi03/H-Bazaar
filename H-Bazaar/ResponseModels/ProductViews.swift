@@ -1,6 +1,6 @@
 
 import Foundation
-struct ProductViews : Codable {
+struct ProductViewsResponseModel : Codable {
 	let id : Int?
     let viewCount: Int?
 

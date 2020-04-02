@@ -12,11 +12,30 @@ final class NetworkManager {
     
     static let shared = NetworkManager()
     
+    let webserviceHelper = WebserviceHelper()
     private init() {
         
     }
     
-    func getProducts(completion: @escaping (ProductsAPIResponse?) -> ()) {
-        
+    func getProducts(completion: @escaping (ProductsAPIResponseModel?) -> ()) {
+        guard let url = URL(string: AppConstants.API.products)
+            else {
+                return
+        }
+        webserviceHelper.fetchData(url: url, shouldCancelOtherOps: true) { (data, response, error) in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+                completion(nil)
+            } else {
+                let jsonDecoder = JSONDecoder()
+                do {
+                    let productsResponse = try jsonDecoder.decode(ProductsAPIResponseModel.self, from: data!)
+                    completion(productsResponse)
+                } catch {
+                    print("Error occured while parsing products response")
+                    completion(nil)
+                }
+            }
+        }
     }
 }
