@@ -14,18 +14,17 @@
         <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="orders" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="shares" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="views" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="products" inverseEntity="Category"/>
+        <relationship name="ranking" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ranking" inverseName="products" inverseEntity="Ranking"/>
         <relationship name="tax" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tax" inverseName="product" inverseEntity="Tax"/>
         <relationship name="variants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Variant" inverseName="product" inverseEntity="Variant"/>
     </entity>
-    <entity name="ProductViews" representedClassName=".ProductViews" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="viewCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="ranking" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ranking" inverseName="products" inverseEntity="Ranking"/>
-    </entity>
     <entity name="Ranking" representedClassName=".Ranking" syncable="YES">
         <attribute name="ranking" optional="YES" attributeType="String"/>
-        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductViews" inverseName="ranking" inverseEntity="ProductViews"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="ranking" inverseEntity="Product"/>
     </entity>
     <entity name="Tax" representedClassName=".Tax" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -41,11 +40,10 @@
     </entity>
     <elements>
         <element name="Category" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="Product" positionX="-54" positionY="18" width="128" height="133"/>
-        <element name="Variant" positionX="-36" positionY="45" width="128" height="118"/>
-        <element name="Tax" positionX="-9" positionY="81" width="128" height="88"/>
-        <element name="Ranking" positionX="9" positionY="90" width="128" height="73"/>
-        <element name="ProductViews" positionX="27" positionY="99" width="128" height="88"/>
         <element name="ChildCategory" positionX="-27" positionY="72" width="128" height="73"/>
+        <element name="Product" positionX="-54" positionY="18" width="128" height="193"/>
+        <element name="Ranking" positionX="9" positionY="90" width="128" height="73"/>
+        <element name="Tax" positionX="-9" positionY="81" width="128" height="88"/>
+        <element name="Variant" positionX="-36" positionY="45" width="128" height="118"/>
     </elements>
 </model>

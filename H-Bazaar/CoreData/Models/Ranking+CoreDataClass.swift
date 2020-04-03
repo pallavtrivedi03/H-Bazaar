@@ -2,7 +2,7 @@
 //  Ranking+CoreDataClass.swift
 //  H-Bazaar
 //
-//  Created by Pallav Trivedi on 02/04/20.
+//  Created by Pallav Trivedi on 03/04/20.
 //  Copyright © 2020 Pallav Trivedi. All rights reserved.
 //
 //

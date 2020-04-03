@@ -2,7 +2,7 @@
 //  Ranking+CoreDataProperties.swift
 //  H-Bazaar
 //
-//  Created by Pallav Trivedi on 02/04/20.
+//  Created by Pallav Trivedi on 03/04/20.
 //  Copyright © 2020 Pallav Trivedi. All rights reserved.
 //
 //
@@ -26,10 +26,10 @@ extension Ranking {
 extension Ranking {
 
     @objc(addProductsObject:)
-    @NSManaged public func addToProducts(_ value: ProductViews)
+    @NSManaged public func addToProducts(_ value: Product)
 
     @objc(removeProductsObject:)
-    @NSManaged public func removeFromProducts(_ value: ProductViews)
+    @NSManaged public func removeFromProducts(_ value: Product)
 
     @objc(addProducts:)
     @NSManaged public func addToProducts(_ values: NSSet)

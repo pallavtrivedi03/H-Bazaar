@@ -16,4 +16,8 @@ struct AppConstants {
     struct ViewIdentifiers {
         static let movieCell            = "MovieTableViewCell"
     }
+    
+    struct Config {
+        static let fetchRetriesLimit    = 3
+    }
 }

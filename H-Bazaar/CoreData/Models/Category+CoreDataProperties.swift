@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  H-Bazaar
 //
-//  Created by Pallav Trivedi on 02/04/20.
+//  Created by Pallav Trivedi on 03/04/20.
 //  Copyright © 2020 Pallav Trivedi. All rights reserved.
 //
 //
@@ -19,25 +19,8 @@ extension Category {
 
     @NSManaged public var id: Int16
     @NSManaged public var name: String?
-    @NSManaged public var products: NSSet?
     @NSManaged public var childCategories: NSSet?
-
-}
-
-// MARK: Generated accessors for products
-extension Category {
-
-    @objc(addProductsObject:)
-    @NSManaged public func addToProducts(_ value: Product)
-
-    @objc(removeProductsObject:)
-    @NSManaged public func removeFromProducts(_ value: Product)
-
-    @objc(addProducts:)
-    @NSManaged public func addToProducts(_ values: NSSet)
-
-    @objc(removeProducts:)
-    @NSManaged public func removeFromProducts(_ values: NSSet)
+    @NSManaged public var products: NSSet?
 
 }
 
@@ -55,5 +38,22 @@ extension Category {
 
     @objc(removeChildCategories:)
     @NSManaged public func removeFromChildCategories(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for products
+extension Category {
+
+    @objc(addProductsObject:)
+    @NSManaged public func addToProducts(_ value: Product)
+
+    @objc(removeProductsObject:)
+    @NSManaged public func removeFromProducts(_ value: Product)
+
+    @objc(addProducts:)
+    @NSManaged public func addToProducts(_ values: NSSet)
+
+    @objc(removeProducts:)
+    @NSManaged public func removeFromProducts(_ values: NSSet)
 
 }

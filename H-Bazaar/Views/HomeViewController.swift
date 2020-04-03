@@ -15,6 +15,12 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        homeViewModel.reload = {
+            DispatchQueue.main.async { [weak self] in
+                self?.homeViewModel.getProductsForRanking(rank: "Most OrdeRed Products")
+            }
+        }
+        
         homeViewModel.fetchDataFromDB()
     }
 

@@ -17,15 +17,16 @@ final class CoreDataManager {
         
     }
     
-    func saveProducts(productsData: ProductsAPIResponseModel) {
+    func saveProducts(productsData: ProductsAPIResponseModel, completion: ()->()) {
         prepareDataForDB(productsData: productsData)
         saveContext()
+        completion()
     }
     
     func fetchProducts() -> ([Category],[Ranking]) {
         do {
             let categories = try managedObjectContext.fetch(Category.fetch()) 
-            let rankings = try managedObjectContext.fetch(Ranking.fetch()) 
+            let rankings = try managedObjectContext.fetch(Ranking.fetch())
             return(categories,rankings)
         } catch {
             print("Exception occured while fetching data")
@@ -41,7 +42,7 @@ final class CoreDataManager {
             }
             print("processed all categories")
         }
-        
+        saveContext()
         if let rankings = productsData.rankings, rankings.count > 0 {
             _ = createRankingEntity(rankingsResponse: rankings)
             print("processed all rankings")
@@ -120,28 +121,31 @@ final class CoreDataManager {
         return childCategoriesArray
     }
     
-    private func createProductViewEntity(productViewsResponse: [ProductViewsResponseModel]?) -> [ProductViews] {
-        
-        var productViews = [ProductViews]()
-        if let productViewsArray = productViewsResponse {
-            for productViewResponse in productViewsArray {
-                let productView = ProductViews(context: self.managedObjectContext)
-                productView.id = Int16(productViewResponse.id ?? 0)
-                productView.viewCount = Int64(productViewResponse.viewCount ?? 0)
-                productViews.append(productView)
-            }
-        }
-        return productViews
-    }
-    
     private func createRankingEntity(rankingsResponse: [RankingsResponseModel]?) -> [Ranking] {
         var rankings = [Ranking]()
+        var products = [Product]()
+        do {
+            products = try managedObjectContext.fetch(Product.fetch())
+        } catch {
+            print("Products not found")
+            return rankings
+        }
         
         if let rankingsArray = rankingsResponse {
             for rankingResponse in rankingsArray {
                 let ranking = Ranking(context: self.managedObjectContext)
                 ranking.ranking = rankingResponse.ranking ?? ""
-                ranking.products = NSSet(array: createProductViewEntity(productViewsResponse: rankingResponse.products))
+                
+                if let unrankedProducts = rankingResponse.products {
+                    for unrankedProduct in unrankedProducts {
+                        let rankedProduct = products.first{$0.id == Int16(unrankedProduct.id ?? 0)}
+                        
+                        rankedProduct?.views = rankedProduct?.views != 0 ? (rankedProduct?.views ?? 0) : Int64(unrankedProduct.views ?? 0)
+                        rankedProduct?.shares = rankedProduct?.shares != 0 ? (rankedProduct?.shares ?? 0) : Int64(unrankedProduct.shares ?? 0)
+                        rankedProduct?.orders = rankedProduct?.orders != 0 ? (rankedProduct?.orders ?? 0) : Int64(unrankedProduct.orders ?? 0)
+                        ranking.addToProducts(rankedProduct!)
+                    }
+                }
                 rankings.append(ranking)
             }
         }
