@@ -22,7 +22,8 @@ class CategoriesHeaderView: UIView {
         didSet {
             if rankings.count > 0 {
                 rankingHeaderCollectionView.reloadData()
-                rankingProductsCollectionView.reloadData()                
+                rankingProductsCollectionView.reloadData()
+                
             }
         }
     }
@@ -43,7 +44,10 @@ class CategoriesHeaderView: UIView {
     }
     
     func getSubtitleString(index: Int) -> String {
-        let products = rankings[selectedRankIndex].products?.allObjects as! [Product]
+        guard let products = rankings[selectedRankIndex].products?.allObjects as? [Product] else {
+            return ""
+        }
+        
         switch selectedRankIndex {
         case 0:
             return "\(products[index].orders) orders"
@@ -64,26 +68,30 @@ extension CategoriesHeaderView: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == rankingHeaderCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.ViewIdentifiers.rankingHeaderCell, for: indexPath) as? RankingHeaderCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.ViewIdentifiers.rankingHeaderCell, for: indexPath) as? RankingHeaderCollectionViewCell else {
+                return UICollectionViewCell()
+            }
             var rank = ""
             let rankArray = (rankings[indexPath.row].ranking ?? "").capitalized.components(separatedBy: " ")
             rank = rankArray.count > 2 ? ((rankArray.first ?? "").appending(" \(rankArray[1])") ) : (rankings[indexPath.row].ranking ?? "")
-            cell?.rankingNameLabel.text = rank
+            cell.rankingNameLabel.text = rank
             if indexPath.row == selectedRankIndex {
-                cell?.rankingNameLabel.font = UIFont(name: "MarkerFelt-Wide", size: 24)
-                cell?.rankingNameLabel.textColor = .black
+                cell.rankingNameLabel.font = UIFont(name: "MarkerFelt-Wide", size: 24)
+                cell.rankingNameLabel.textColor = .black
             } else {
-                cell?.rankingNameLabel.font = UIFont(name: "MarkerFelt-Thin", size: 22)
-                cell?.rankingNameLabel.textColor = .gray
+                cell.rankingNameLabel.font = UIFont(name: "MarkerFelt-Thin", size: 22)
+                cell.rankingNameLabel.textColor = .gray
             }
-            return cell!
+            return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.ViewIdentifiers.productCell, for: indexPath) as? ProductCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.ViewIdentifiers.productCell, for: indexPath) as? ProductCollectionViewCell else {
+                return UICollectionViewCell()
+            }
             if let products = rankings[selectedRankIndex].products?.allObjects as? [Product] {
-                cell?.productPlaceholderView.backgroundColor = .random
-                cell?.productTitleLabel.text = products[indexPath.row].name ?? ""
-                cell?.productSubtitleLabel.text = getSubtitleString(index: indexPath.row)
-                return cell!
+                cell.productPlaceholderView.backgroundColor = .random
+                cell.productTitleLabel.text = products[indexPath.row].name ?? ""
+                cell.productSubtitleLabel.text = getSubtitleString(index: indexPath.row)
+                return cell
             }            
         }
         return UICollectionViewCell()

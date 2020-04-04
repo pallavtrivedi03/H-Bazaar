@@ -42,12 +42,14 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.ViewIdentifiers.categoryCollectionCell, for: indexPath) as? CategoryCollectionViewCell
-        cell?.backgroundColor = .random
-        cell?.categoryTitleLabel.text = categories[indexPath.row].name ?? ""
-        cell?.layer.cornerRadius = 8
-        cell?.clipsToBounds = true
-        return cell!
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.ViewIdentifiers.categoryCollectionCell, for: indexPath) as? CategoryCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.backgroundColor = .random
+        cell.categoryTitleLabel.text = categories[indexPath.row].name ?? ""
+        cell.layer.cornerRadius = 8
+        cell.clipsToBounds = true
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -7,26 +7,32 @@
 //
 
 import Foundation
-
+import UIKit
 protocol IHomeViewNavigator {
-    init(homeView: HomeViewController)
-    func showCategoryDetailView(categoryView: CategoryDetailViewController)
-    func showProductDetailView(productDetailView: ProductDetailViewController)
+    init(navigator: UINavigationController?)
+    func showCategoryDetailView(category: Category)
+    func showProductDetailView(product: Product)
 }
 
 class HomeViewNavigator: IHomeViewNavigator {
     
-    unowned var homeView: HomeViewController
+    weak var navigator: UINavigationController?
     
-    required init(homeView: HomeViewController) {
-        self.homeView = homeView
+    required init(navigator: UINavigationController?) {
+        self.navigator = navigator
     }
     
-    func showCategoryDetailView(categoryView: CategoryDetailViewController) {
-        self.homeView.navigationController?.pushViewController(categoryView, animated: true)
+    func showCategoryDetailView(category: Category) {
+        if let categoryDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: AppConstants.ViewIdentifiers.categoryDetailVC) as? CategoryDetailViewController {
+            categoryDetailVC.categoryViewModel.category = category
+            self.navigator?.pushViewController(categoryDetailVC, animated: true)
+        }
     }
     
-    func showProductDetailView(productDetailView: ProductDetailViewController) {
-        self.homeView.navigationController?.pushViewController(productDetailView, animated: true)
+    func showProductDetailView(product: Product) {
+        if let productDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: AppConstants.ViewIdentifiers.productDetailVC) as? ProductDetailViewController {
+            productDetailVC.productDetailViewModel.product = product
+            self.navigator?.pushViewController(productDetailVC, animated: true)
+        }
     }
 }

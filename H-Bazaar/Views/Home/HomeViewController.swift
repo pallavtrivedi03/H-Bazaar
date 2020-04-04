@@ -16,16 +16,22 @@ class HomeViewController: UIViewController {
     private var categoriesHeaderView: CategoriesHeaderView?
     
     private let homeViewModel = HomeViewModel()
-    private var navigator: HomeViewNavigator?
+    private var navigator: IHomeViewNavigator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigator = HomeViewNavigator(homeView: self)
+        navigator = HomeViewNavigator(navigator: self.navigationController)
         
         homeViewModel.reload = {
             DispatchQueue.main.async { [weak self] in
                 self?.setupViews()
+            }
+        }
+        
+        homeViewModel.error = { (errorType) in
+            DispatchQueue.main.async { [weak self] in
+                self?.showError(errorType: errorType)
             }
         }
         
@@ -51,6 +57,25 @@ class HomeViewController: UIViewController {
         categoriesTableView.tableFooterView = UIView()
         categoriesHeaderView?.rankings = homeViewModel.rankings
     }
+    
+    func showError(errorType: HBError) {
+        
+        var errorTitle = ""
+        var errorMessage = ""
+        
+        switch errorType {
+        case .parsingFailed:
+            errorTitle = "Parsing Failed"
+            errorMessage = "Received data in not in the expected format"
+        case .retriesExhausted:
+            errorTitle = "Data not available"
+            errorMessage = "Please try after some time."
+        }
+        
+        let alertController = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -68,16 +93,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: CategoryTableViewCellDelegate {
     func didClickOnCategory(category: Category) {
-        let categoryDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: AppConstants.ViewIdentifiers.categoryDetailVC) as? CategoryDetailViewController
-        categoryDetailVC?.categoryViewModel.category = category
-        navigator?.showCategoryDetailView(categoryView: categoryDetailVC!)
+        navigator?.showCategoryDetailView(category: category)
     }
 }
 
 extension HomeViewController: CategoriesHeaderViewDelegate {
     func didSelectProduct(product: Product) {
-        let productDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: AppConstants.ViewIdentifiers.productDetailVC) as? ProductDetailViewController
-        productDetailVC?.productDetailViewModel.product = product
-        navigator?.showProductDetailView(productDetailView: productDetailVC!)
+        navigator?.showProductDetailView(product: product)
     }
 }

@@ -5,23 +5,26 @@
 //  Created by Pallav Trivedi on 04/04/20.
 //  Copyright © 2020 Pallav Trivedi. All rights reserved.
 //
-
+import UIKit
 import Foundation
 
 protocol ICategoryDetailViewNavigator {
-    init(categoryView: CategoryDetailViewController)
-    func showProductDetailView(productDetailView: ProductDetailViewController)
+    init(navigator: UINavigationController?)
+    func showProductDetailView(product: Product)
 }
 
 class CategoryDetailViewNavigator: ICategoryDetailViewNavigator {
     
-    unowned var categoryDetailView: CategoryDetailViewController
+    weak var navigator: UINavigationController?
     
-    required init(categoryView: CategoryDetailViewController) {
-        self.categoryDetailView = categoryView
+    required init(navigator: UINavigationController?) {
+        self.navigator = navigator
     }
     
-    func showProductDetailView(productDetailView: ProductDetailViewController) {
-        self.categoryDetailView.navigationController?.pushViewController(productDetailView, animated: true)
+    func showProductDetailView(product: Product) {
+        if let productDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: AppConstants.ViewIdentifiers.productDetailVC) as? ProductDetailViewController {
+            productDetailVC.productDetailViewModel.product = product
+            self.navigator?.pushViewController(productDetailVC, animated: true)
+        }
     }
 }

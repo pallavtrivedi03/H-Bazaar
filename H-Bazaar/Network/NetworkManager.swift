@@ -27,9 +27,11 @@ final class NetworkManager {
                 print(error?.localizedDescription ?? "")
                 completion(nil)
             } else {
+                guard let responseData = data else { return }
+                
                 let jsonDecoder = JSONDecoder()
                 do {
-                    let productsResponse = try jsonDecoder.decode(ProductsAPIResponseModel.self, from: data!)
+                    let productsResponse = try jsonDecoder.decode(ProductsAPIResponseModel.self, from: responseData)
                     completion(productsResponse)
                 } catch {
                     print("Error occured while parsing products response")

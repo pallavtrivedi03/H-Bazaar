@@ -49,6 +49,7 @@ final class CoreDataManager {
         }
     }
     
+    @discardableResult
     private func createCategoryEntity(categoryResponse: CategoriesResponseModel) -> Category {
         let category = Category(context: self.managedObjectContext)
         category.id = Int16(categoryResponse.id ?? 0)

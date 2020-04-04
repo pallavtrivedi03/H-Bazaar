@@ -36,6 +36,7 @@
 		7B56509C2435BFDB0003689F /* Tax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5650952435BFDB0003689F /* Tax.swift */; };
 		7B56509D2435BFDB0003689F /* ProductsAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5650962435BFDB0003689F /* ProductsAPIResponse.swift */; };
 		7B56509E2435BFDB0003689F /* Variants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5650972435BFDB0003689F /* Variants.swift */; };
+		7B7D985024390E5400D29186 /* HBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D984F24390E5400D29186 /* HBError.swift */; };
 		7BB0B4B72435DE480067798B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB0B4B62435DE480067798B /* NetworkManager.swift */; };
 		7BB0B4BC2435DFC90067798B /* HBURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB0B4BB2435DFC90067798B /* HBURLSession.swift */; };
 		7BB0B4BE2435E0060067798B /* WebserviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB0B4BD2435E0060067798B /* WebserviceHelper.swift */; };
@@ -108,6 +109,7 @@
 		7B5650952435BFDB0003689F /* Tax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tax.swift; sourceTree = "<group>"; };
 		7B5650962435BFDB0003689F /* ProductsAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsAPIResponse.swift; sourceTree = "<group>"; };
 		7B5650972435BFDB0003689F /* Variants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variants.swift; sourceTree = "<group>"; };
+		7B7D984F24390E5400D29186 /* HBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBError.swift; sourceTree = "<group>"; };
 		7BB0B4B62435DE480067798B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7BB0B4BB2435DFC90067798B /* HBURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBURLSession.swift; sourceTree = "<group>"; };
 		7BB0B4BD2435E0060067798B /* WebserviceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebserviceHelper.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				7BB0B4BB2435DFC90067798B /* HBURLSession.swift */,
+				7B7D984F24390E5400D29186 /* HBError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				7BB0B5712437658E0067798B /* ChildCategory+CoreDataClass.swift in Sources */,
 				7B4FDA3024388C1500EBD19A /* CategoryViewModel.swift in Sources */,
 				7B56509C2435BFDB0003689F /* Tax.swift in Sources */,
+				7B7D985024390E5400D29186 /* HBError.swift in Sources */,
 				7B4FDA2E2438892D00EBD19A /* HomeViewNavigator.swift in Sources */,
 				7BB0B4C22435E0BA0067798B /* HomeViewController.swift in Sources */,
 				7BB0B56D2437658E0067798B /* Category+CoreDataClass.swift in Sources */,

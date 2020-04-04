@@ -18,14 +18,11 @@ class HomeViewModel {
     
     var parentCategories: [Category]!
     var rankings: [Ranking]!
-    var rankedProducts: [Product]! {
-        didSet {
-            print("Ranked products count \(rankedProducts!.count)")
-        }
-    }
+    var rankedProducts: [Product]! 
     
     var reload: (() -> Void)? = nil
-
+    var error: ((HBError) -> Void)? = nil
+    
     var fetchTryCount = 0
     
     func getProductsForRanking(rank: String) {
@@ -54,7 +51,9 @@ class HomeViewModel {
             fetchTryCount += 1
             fetchDataFromAPI()
         } else if fetchTryCount == AppConstants.Config.fetchRetriesLimit {
-            //TODO: send callback to view for error
+            if let errorBlock = error {
+                errorBlock(HBError.retriesExhausted)
+            }
         } else {
             self.categories = fetchedData.0
             self.rankings = fetchedData.1
@@ -68,7 +67,9 @@ class HomeViewModel {
             if let productsData = productsResponse {
                 weakSelf?.saveDataToDB(productsData: productsData)
             } else {
-                //TODO: send callback to view for error
+                if let errorBlock = weakSelf?.error {
+                    errorBlock(HBError.parsingFailed)
+                }
             }
         }
         

@@ -14,7 +14,7 @@ class CategoryDetailViewController: UIViewController {
     @IBOutlet weak var productCollectionView: UICollectionView!
     @IBOutlet weak var subCategoriesCollectionView: UICollectionView!
     
-    private var navigator: CategoryDetailViewNavigator?
+    private var navigator: ICategoryDetailViewNavigator?
     
     let categoryViewModel = CategoryViewModel()
     
@@ -23,7 +23,7 @@ class CategoryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = categoryViewModel.category?.name ?? ""
-        navigator = CategoryDetailViewNavigator(categoryView: self)
+        navigator = CategoryDetailViewNavigator(navigator: self.navigationController)
         registerCollectionViewCells()
         subCategoriesCollectionView.reloadData()
         productCollectionView.reloadData()
@@ -70,28 +70,31 @@ extension CategoryDetailViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == subCategoriesCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.ViewIdentifiers.rankingHeaderCell, for: indexPath) as? RankingHeaderCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.ViewIdentifiers.rankingHeaderCell, for: indexPath) as? RankingHeaderCollectionViewCell else {
+                return UICollectionViewCell()
+            }
             if let subCategoriesIndex = categoryViewModel.category?.childCategories?.allObjects as? [ChildCategory] {
                 if let category = categoryViewModel.getCategory(id: subCategoriesIndex[indexPath.row].id) {
-                    cell?.rankingNameLabel.text = category.name ?? ""
+                    cell.rankingNameLabel.text = category.name ?? ""
                     if indexPath.row == selectedParentCategoryIndex {
-                        cell?.rankingNameLabel.font = UIFont(name: "MarkerFelt-Wide", size: 24)
-                        cell?.rankingNameLabel.textColor = .black
+                        cell.rankingNameLabel.font = UIFont(name: "MarkerFelt-Wide", size: 24)
+                        cell.rankingNameLabel.textColor = .black
                     } else {
-                        cell?.rankingNameLabel.font = UIFont(name: "MarkerFelt-Thin", size: 22)
-                        cell?.rankingNameLabel.textColor = .gray
+                        cell.rankingNameLabel.font = UIFont(name: "MarkerFelt-Thin", size: 22)
+                        cell.rankingNameLabel.textColor = .gray
                     }
-                    return cell!
+                    return cell
                 }
             }
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.ViewIdentifiers.productCell, for: indexPath) as? ProductCollectionViewCell
-            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.ViewIdentifiers.productCell, for: indexPath) as? ProductCollectionViewCell else {
+                return UICollectionViewCell()
+            }
             if let products = categoryViewModel.grandChildCategory?.products?.allObjects as? [Product] {
-                cell?.productPlaceholderView.backgroundColor = .random
-                cell?.productTitleLabel.text = products[indexPath.row].name ?? ""
-                cell?.productSubtitleLabel.text = ""
-                return cell!
+                cell.productPlaceholderView.backgroundColor = .random
+                cell.productTitleLabel.text = products[indexPath.row].name ?? ""
+                cell.productSubtitleLabel.text = ""
+                return cell
             }
         }
         return UICollectionViewCell()
@@ -107,9 +110,9 @@ extension CategoryDetailViewController: UICollectionViewDelegate, UICollectionVi
             productCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         } else {
-            let productDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: AppConstants.ViewIdentifiers.productDetailVC) as? ProductDetailViewController
-            productDetailVC?.productDetailViewModel.product = categoryViewModel.grandChildCategory?.products?.allObjects[indexPath.row] as? Product
-            navigator?.showProductDetailView(productDetailView: productDetailVC!)
+            if let product = categoryViewModel.grandChildCategory?.products?.allObjects[indexPath.row] as? Product {
+                navigator?.showProductDetailView(product: product)
+            }
         }
     }
     
