@@ -12,12 +12,14 @@ class HomeViewModel {
         
     var categories: [Category]! {
         didSet {
+            parentCategories = categories.filter{ $0.childCategories?.count ?? 0 > 0}
             if let reloadBlock = reload {
                 reloadBlock()
             }
         }
     }
     
+    var parentCategories: [Category]!
     var rankings: [Ranking]!
     var rankedProducts: [Product]! {
         didSet {

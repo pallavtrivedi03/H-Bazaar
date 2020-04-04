@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
+    
     @IBOutlet weak var categoriesTableView: UITableView!
     @IBOutlet weak var loadingView: UIView!
     
@@ -19,18 +19,25 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         homeViewModel.reload = {
             DispatchQueue.main.async { [weak self] in
-                self?.loadingView.isHidden = true
-                self?.categoriesTableView.isHidden = false
-                self?.setupHeaderView()
+                self?.setupViews()
             }
         }
         
+        categoriesTableView.register(UINib(nibName: AppConstants.ViewIdentifiers.categoryTableViewCell, bundle: nil), forCellReuseIdentifier: AppConstants.ViewIdentifiers.categoryTableViewCell)
         homeViewModel.fetchDataFromDB()
     }
-
+    
+    func setupViews() {
+        loadingView.isHidden = true
+        categoriesTableView.isHidden = false
+        
+        categoriesTableView.rowHeight = UITableView.automaticDimension
+        setupHeaderView()
+    }
+    
     func setupHeaderView() {
         categoriesHeaderView = Bundle.main.loadNibNamed(AppConstants.ViewIdentifiers.categoriesHeaderView, owner: self, options: nil)?[0] as? CategoriesHeaderView
         categoriesHeaderView?.frame = CGRect(x: 0, y: 0, width: Int(AppConstants.ViewFrames.Width.categoriesHeader), height: AppConstants.ViewFrames.Height.categoriesHeader)
@@ -42,11 +49,13 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: AppConstants.ViewIdentifiers.categoryTableViewCell, for: indexPath) as? CategoryTableViewCell
+        cell?.categories = homeViewModel.parentCategories
+        return cell!
     }
     
     
