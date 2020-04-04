@@ -8,14 +8,20 @@
 
 import UIKit
 
+protocol CategoryTableViewCellDelegate: class {
+    func didClickOnCategory(category: Category)
+}
+
 class CategoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
+    weak var delegate: CategoryTableViewCellDelegate?
+    
     var categories: [Category]! {
         didSet {
-            if categories.count > 0 {
+            if categories != nil, categories.count > 0 {
                 let rowsCount = (categories.count % 2 == 0) ? (categories.count/2) : (categories.count/2) + 1
                 let padding = rowsCount * 12
                 collectionViewHeightConstraint.constant = CGFloat(rowsCount * AppConstants.ViewFrames.Height.categoryCell) + CGFloat(padding)
@@ -32,7 +38,7 @@ class CategoryTableViewCell: UITableViewCell {
 
 extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories.count
+        return categories != nil ? categories.count : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -42,6 +48,10 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         cell?.layer.cornerRadius = 8
         cell?.clipsToBounds = true
         return cell!
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didClickOnCategory(category: categories[indexPath.row])
     }
 }
 

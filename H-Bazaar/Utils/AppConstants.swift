@@ -19,6 +19,8 @@ struct AppConstants {
         static let categoriesHeaderView     = "CategoriesHeaderView"
         static let categoryTableViewCell    = "CategoryTableViewCell"
         static let categoryCollectionCell   = "CategoryCollectionViewCell"
+        static let categoryDetailVC         = "CategoryDetailViewController"
+        static let productDetailVC          = "ProductDetailViewController"
     }
     
     struct Config {
@@ -31,12 +33,14 @@ struct AppConstants {
             static let categoriesHeader = 300
             static let product          = 220
             static let categoryCell     = 80
+            static let categoryProduct  = (UIScreen.main.bounds.size.width - 24)/2 + 30
         }
         struct Width {
             static let rankingHeader    = 160
             static let categoriesHeader = UIScreen.main.bounds.size.width
             static let product          = 160
             static let categoryCell     = (UIScreen.main.bounds.size.width - 24)/2
+            static let categoryProduct  = (UIScreen.main.bounds.size.width - 24)/2
         }
     }
 }

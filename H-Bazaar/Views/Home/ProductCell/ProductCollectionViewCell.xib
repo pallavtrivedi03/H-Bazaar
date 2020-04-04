@@ -29,9 +29,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="amF-T8-aVN" secondAttribute="height" id="MK8-dl-Ek5"/>
+                            <constraint firstAttribute="width" constant="160" id="HY3-bN-yxE"/>
                             <constraint firstItem="eRh-7C-Nuj" firstAttribute="centerY" secondItem="amF-T8-aVN" secondAttribute="centerY" id="UsU-pK-cqZ"/>
                             <constraint firstItem="eRh-7C-Nuj" firstAttribute="centerX" secondItem="amF-T8-aVN" secondAttribute="centerX" id="bKw-H6-nnJ"/>
+                            <constraint firstAttribute="height" constant="160" id="jTW-LP-xq0"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -53,6 +54,7 @@
                     </label>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="amF-T8-aVN" secondAttribute="trailing" id="2Lo-vc-bq8"/>
                 <constraint firstItem="hmL-fD-MPa" firstAttribute="trailing" secondItem="gfG-EK-Igo" secondAttribute="trailing" id="2gI-Lm-znV"/>

@@ -16,9 +16,12 @@ class HomeViewController: UIViewController {
     private var categoriesHeaderView: CategoriesHeaderView?
     
     private let homeViewModel = HomeViewModel()
-    
+    private var navigator: HomeViewNavigator?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigator = HomeViewNavigator(homeView: self)
         
         homeViewModel.reload = {
             DispatchQueue.main.async { [weak self] in
@@ -43,6 +46,7 @@ class HomeViewController: UIViewController {
         categoriesHeaderView?.frame = CGRect(x: 0, y: 0, width: Int(AppConstants.ViewFrames.Width.categoriesHeader), height: AppConstants.ViewFrames.Height.categoriesHeader)
         categoriesHeaderView?.registerCollectionViewCells()
         categoriesTableView.tableHeaderView = categoriesHeaderView
+        categoriesTableView.tableFooterView = UIView()
         categoriesHeaderView?.rankings = homeViewModel.rankings
     }
 }
@@ -55,8 +59,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AppConstants.ViewIdentifiers.categoryTableViewCell, for: indexPath) as? CategoryTableViewCell
         cell?.categories = homeViewModel.parentCategories
+        cell?.delegate = self
         return cell!
     }
-    
-    
+}
+
+extension HomeViewController: CategoryTableViewCellDelegate {
+    func didClickOnCategory(category: Category) {
+        let categoryDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: AppConstants.ViewIdentifiers.categoryDetailVC) as? CategoryDetailViewController
+        categoryDetailVC?.categoryViewModel.category = category
+        navigator?.showCategoryDetailView(categoryView: categoryDetailVC!)
+    }
 }

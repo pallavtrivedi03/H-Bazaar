@@ -12,10 +12,7 @@ class HomeViewModel {
         
     var categories: [Category]! {
         didSet {
-            parentCategories = categories.filter{ $0.childCategories?.count ?? 0 > 0}
-            if let reloadBlock = reload {
-                reloadBlock()
-            }
+            setParentCategories()
         }
     }
     
@@ -34,6 +31,21 @@ class HomeViewModel {
     func getProductsForRanking(rank: String) {
         let products = rankings[rankings.firstIndex{$0.ranking == rank} ?? 0].products
         self.rankedProducts = products?.allObjects as? [Product]
+    }
+    
+    func setParentCategories() {
+        parentCategories = categories.filter{ $0.childCategories?.count ?? 0 > 0}
+        var childCategories = [Int16]()
+        for parentCategory in parentCategories {
+            let children = (parentCategory.childCategories?.allObjects as! [ChildCategory]).map { (child) -> Int16 in
+                return child.id
+            }
+            childCategories.append(contentsOf: children)
+        }
+        parentCategories = parentCategories.filter{ !childCategories.contains($0.id)}
+        if let reloadBlock = reload {
+            reloadBlock()
+        }
     }
     
     func fetchDataFromDB() {
