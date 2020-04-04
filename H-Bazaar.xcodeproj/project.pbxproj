@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -52,10 +52,15 @@
 		7BB0B5702437658E0067798B /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB0B5642437658E0067798B /* Product+CoreDataProperties.swift */; };
 		7BB0B5712437658E0067798B /* ChildCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB0B5652437658E0067798B /* ChildCategory+CoreDataClass.swift */; };
 		7BB0B5722437658E0067798B /* ChildCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB0B5662437658E0067798B /* ChildCategory+CoreDataProperties.swift */; };
-		7BB0B5732437658E0067798B /* Variant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB0B5672437658E0067798B /* Variant+CoreDataClass.swift */; };
-		7BB0B5742437658E0067798B /* Variant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB0B5682437658E0067798B /* Variant+CoreDataProperties.swift */; };
 		7BB0B5752437658E0067798B /* Ranking+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB0B5692437658E0067798B /* Ranking+CoreDataClass.swift */; };
 		7BB0B5762437658E0067798B /* Ranking+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB0B56A2437658E0067798B /* Ranking+CoreDataProperties.swift */; };
+		7BD4CC872438CD4C00E0751A /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD4CC862438CD4C00E0751A /* ProductDetailViewModel.swift */; };
+		7BD4CC8A2438CD9800E0751A /* CategoryDetailViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD4CC892438CD9800E0751A /* CategoryDetailViewNavigator.swift */; };
+		7BD4CC922438E15100E0751A /* Products.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BD4CC912438E15100E0751A /* Products.json */; };
+		7BD4CC992438E4A500E0751A /* Variant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD4CC972438E4A400E0751A /* Variant+CoreDataClass.swift */; };
+		7BD4CC9A2438E4A500E0751A /* Variant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD4CC982438E4A500E0751A /* Variant+CoreDataProperties.swift */; };
+		B02FBEF931503E022B387FEE /* Pods_H_Bazaar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7616DBDAFA60D5EAE283360A /* Pods_H_Bazaar.framework */; };
+		D6522B16473D88E8440D9E70 /* Pods_H_BazaarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D077DDCB3942F4298CD180D9 /* Pods_H_BazaarTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7616DBDAFA60D5EAE283360A /* Pods_H_Bazaar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H_Bazaar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B0BD6D12438C97B006D7311 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		7B35F6062437B7DC00FB3800 /* CategoriesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesHeaderView.swift; sourceTree = "<group>"; };
 		7B35F6082437B7EF00FB3800 /* CategoriesHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesHeaderView.xib; sourceTree = "<group>"; };
@@ -118,10 +124,18 @@
 		7BB0B5642437658E0067798B /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7BB0B5652437658E0067798B /* ChildCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChildCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7BB0B5662437658E0067798B /* ChildCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChildCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		7BB0B5672437658E0067798B /* Variant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Variant+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7BB0B5682437658E0067798B /* Variant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Variant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7BB0B5692437658E0067798B /* Ranking+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ranking+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7BB0B56A2437658E0067798B /* Ranking+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ranking+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7BD4CC862438CD4C00E0751A /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
+		7BD4CC892438CD9800E0751A /* CategoryDetailViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewNavigator.swift; sourceTree = "<group>"; };
+		7BD4CC912438E15100E0751A /* Products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Products.json; sourceTree = "<group>"; };
+		7BD4CC972438E4A400E0751A /* Variant+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Variant+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7BD4CC982438E4A500E0751A /* Variant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Variant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9E30274EA368458D6800C1CA /* Pods-H-Bazaar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H-Bazaar.debug.xcconfig"; path = "Target Support Files/Pods-H-Bazaar/Pods-H-Bazaar.debug.xcconfig"; sourceTree = "<group>"; };
+		A2846FCB70E00508EBEE42D1 /* Pods-H-Bazaar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H-Bazaar.release.xcconfig"; path = "Target Support Files/Pods-H-Bazaar/Pods-H-Bazaar.release.xcconfig"; sourceTree = "<group>"; };
+		A6391AF547919C74563EC38C /* Pods-H-BazaarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H-BazaarTests.release.xcconfig"; path = "Target Support Files/Pods-H-BazaarTests/Pods-H-BazaarTests.release.xcconfig"; sourceTree = "<group>"; };
+		D077DDCB3942F4298CD180D9 /* Pods_H_BazaarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H_BazaarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD4EF4EE3D8DB213B5C78FC3 /* Pods-H-BazaarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H-BazaarTests.debug.xcconfig"; path = "Target Support Files/Pods-H-BazaarTests/Pods-H-BazaarTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B02FBEF931503E022B387FEE /* Pods_H_Bazaar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,12 +151,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6522B16473D88E8440D9E70 /* Pods_H_BazaarTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D20902A645F039AA968BDF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7616DBDAFA60D5EAE283360A /* Pods_H_Bazaar.framework */,
+				D077DDCB3942F4298CD180D9 /* Pods_H_BazaarTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7B0BD6D02438C965006D7311 /* ProductDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +244,7 @@
 		7B4FDA2B24387DA800EBD19A /* Navigators */ = {
 			isa = PBXGroup;
 			children = (
+				7BD4CC882438CD8300E0751A /* CategoryDetail */,
 				7B4FDA2C24387DBB00EBD19A /* Home */,
 			);
 			path = Navigators;
@@ -238,6 +264,8 @@
 				7B56506A243503550003689F /* H-Bazaar */,
 				7B565084243503570003689F /* H-BazaarTests */,
 				7B565069243503550003689F /* Products */,
+				B7F34ECEAB80683963CF8083 /* Pods */,
+				1D20902A645F039AA968BDF3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -270,6 +298,7 @@
 		7B565084243503570003689F /* H-BazaarTests */ = {
 			isa = PBXGroup;
 			children = (
+				7BD4CC912438E15100E0751A /* Products.json */,
 				7B565085243503570003689F /* H_BazaarTests.swift */,
 				7B565087243503570003689F /* Info.plist */,
 			);
@@ -354,6 +383,7 @@
 			children = (
 				7BB0B4C42435E0DA0067798B /* HomeViewModel.swift */,
 				7B4FDA2F24388C1500EBD19A /* CategoryViewModel.swift */,
+				7BD4CC862438CD4C00E0751A /* ProductDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -361,6 +391,8 @@
 		7BB0B4F82435E9870067798B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7BD4CC972438E4A400E0751A /* Variant+CoreDataClass.swift */,
+				7BD4CC982438E4A500E0751A /* Variant+CoreDataProperties.swift */,
 				7BB0B55F2437658E0067798B /* Tax+CoreDataClass.swift */,
 				7BB0B5602437658E0067798B /* Tax+CoreDataProperties.swift */,
 				7BB0B5612437658E0067798B /* Category+CoreDataClass.swift */,
@@ -369,12 +401,29 @@
 				7BB0B5642437658E0067798B /* Product+CoreDataProperties.swift */,
 				7BB0B5652437658E0067798B /* ChildCategory+CoreDataClass.swift */,
 				7BB0B5662437658E0067798B /* ChildCategory+CoreDataProperties.swift */,
-				7BB0B5672437658E0067798B /* Variant+CoreDataClass.swift */,
-				7BB0B5682437658E0067798B /* Variant+CoreDataProperties.swift */,
 				7BB0B5692437658E0067798B /* Ranking+CoreDataClass.swift */,
 				7BB0B56A2437658E0067798B /* Ranking+CoreDataProperties.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7BD4CC882438CD8300E0751A /* CategoryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				7BD4CC892438CD9800E0751A /* CategoryDetailViewNavigator.swift */,
+			);
+			path = CategoryDetail;
+			sourceTree = "<group>";
+		};
+		B7F34ECEAB80683963CF8083 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9E30274EA368458D6800C1CA /* Pods-H-Bazaar.debug.xcconfig */,
+				A2846FCB70E00508EBEE42D1 /* Pods-H-Bazaar.release.xcconfig */,
+				FD4EF4EE3D8DB213B5C78FC3 /* Pods-H-BazaarTests.debug.xcconfig */,
+				A6391AF547919C74563EC38C /* Pods-H-BazaarTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,9 +433,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B56508A243503570003689F /* Build configuration list for PBXNativeTarget "H-Bazaar" */;
 			buildPhases = (
+				2CD9A99EB413BB6230F02041 /* [CP] Check Pods Manifest.lock */,
 				7B565064243503550003689F /* Sources */,
 				7B565065243503550003689F /* Frameworks */,
 				7B565066243503550003689F /* Resources */,
+				AAEE61C2965B7E990B3D9997 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -401,6 +452,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B56508D243503570003689F /* Build configuration list for PBXNativeTarget "H-BazaarTests" */;
 			buildPhases = (
+				3E53C2AC72E0048F80B9E9A3 /* [CP] Check Pods Manifest.lock */,
 				7B56507D243503570003689F /* Sources */,
 				7B56507E243503570003689F /* Frameworks */,
 				7B56507F243503570003689F /* Resources */,
@@ -473,10 +525,75 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BD4CC922438E15100E0751A /* Products.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2CD9A99EB413BB6230F02041 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-H-Bazaar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E53C2AC72E0048F80B9E9A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-H-BazaarTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAEE61C2965B7E990B3D9997 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-H-Bazaar/Pods-H-Bazaar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-H-Bazaar/Pods-H-Bazaar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-H-Bazaar/Pods-H-Bazaar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7B565064243503550003689F /* Sources */ = {
@@ -491,7 +608,6 @@
 				7B4FDA2624386C5800EBD19A /* CategoryCollectionViewCell.swift in Sources */,
 				7BB0B4C52435E0DA0067798B /* HomeViewModel.swift in Sources */,
 				7BB0B4C72435E2550067798B /* CoreDataManager.swift in Sources */,
-				7BB0B5742437658E0067798B /* Variant+CoreDataProperties.swift in Sources */,
 				7BB0B56B2437658E0067798B /* Tax+CoreDataClass.swift in Sources */,
 				7BB0B4C02435E05F0067798B /* AppConstants.swift in Sources */,
 				7B5650982435BFDB0003689F /* ProductViews.swift in Sources */,
@@ -499,6 +615,7 @@
 				7B56506C243503550003689F /* AppDelegate.swift in Sources */,
 				7BB0B4FA24361DFB0067798B /* Helper.swift in Sources */,
 				7B4FDA1824385BAD00EBD19A /* ProductCollectionViewCell.swift in Sources */,
+				7BD4CC992438E4A500E0751A /* Variant+CoreDataClass.swift in Sources */,
 				7B56506E243503550003689F /* SceneDelegate.swift in Sources */,
 				7B5650992435BFDB0003689F /* Categories.swift in Sources */,
 				7BB0B5722437658E0067798B /* ChildCategory+CoreDataProperties.swift in Sources */,
@@ -511,18 +628,20 @@
 				7BB0B4C22435E0BA0067798B /* HomeViewController.swift in Sources */,
 				7BB0B56D2437658E0067798B /* Category+CoreDataClass.swift in Sources */,
 				7BB0B56E2437658E0067798B /* Category+CoreDataProperties.swift in Sources */,
-				7BB0B5732437658E0067798B /* Variant+CoreDataClass.swift in Sources */,
 				7B4FDA212438668E00EBD19A /* CategoryTableViewCell.swift in Sources */,
 				7B56509B2435BFDB0003689F /* Rankings.swift in Sources */,
 				7BB0B56F2437658E0067798B /* Product+CoreDataClass.swift in Sources */,
+				7BD4CC872438CD4C00E0751A /* ProductDetailViewModel.swift in Sources */,
 				7B3DA7BC2437BC3C00C8668A /* RankingHeaderCollectionViewCell.swift in Sources */,
 				7B56509A2435BFDB0003689F /* Product.swift in Sources */,
+				7BD4CC9A2438E4A500E0751A /* Variant+CoreDataProperties.swift in Sources */,
 				7B56509E2435BFDB0003689F /* Variants.swift in Sources */,
 				7BB0B5752437658E0067798B /* Ranking+CoreDataClass.swift in Sources */,
 				7B4FDA1D24385DE300EBD19A /* Extensions.swift in Sources */,
 				7B0BD6D22438C97B006D7311 /* ProductDetailViewController.swift in Sources */,
 				7BB0B5762437658E0067798B /* Ranking+CoreDataProperties.swift in Sources */,
 				7B56509D2435BFDB0003689F /* ProductsAPIResponse.swift in Sources */,
+				7BD4CC8A2438CD9800E0751A /* CategoryDetailViewNavigator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +799,7 @@
 		};
 		7B56508B243503570003689F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E30274EA368458D6800C1CA /* Pods-H-Bazaar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -697,6 +817,7 @@
 		};
 		7B56508C243503570003689F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2846FCB70E00508EBEE42D1 /* Pods-H-Bazaar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -714,6 +835,7 @@
 		};
 		7B56508E243503570003689F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD4EF4EE3D8DB213B5C78FC3 /* Pods-H-BazaarTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -735,6 +857,7 @@
 		};
 		7B56508F243503570003689F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6391AF547919C74563EC38C /* Pods-H-BazaarTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

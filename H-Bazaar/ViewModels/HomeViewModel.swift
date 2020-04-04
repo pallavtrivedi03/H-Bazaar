@@ -58,6 +58,7 @@ class HomeViewModel {
         } else {
             self.categories = fetchedData.0
             self.rankings = fetchedData.1
+            self.rankings.sort{ ($0.ranking ?? "") < ($1.ranking ?? "")}
         }
     }
     

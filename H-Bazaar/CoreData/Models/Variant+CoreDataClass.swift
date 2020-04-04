@@ -1,9 +1,8 @@
 //
 //  Variant+CoreDataClass.swift
-//  H-Bazaar
+//  
 //
-//  Created by Pallav Trivedi on 03/04/20.
-//  Copyright © 2020 Pallav Trivedi. All rights reserved.
+//  Created by Pallav Trivedi on 04/04/20.
 //
 //
 

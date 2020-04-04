@@ -39,12 +39,14 @@ class HomeViewController: UIViewController {
         
         categoriesTableView.rowHeight = UITableView.automaticDimension
         setupHeaderView()
+        categoriesTableView.reloadData()
     }
     
     func setupHeaderView() {
         categoriesHeaderView = Bundle.main.loadNibNamed(AppConstants.ViewIdentifiers.categoriesHeaderView, owner: self, options: nil)?[0] as? CategoriesHeaderView
         categoriesHeaderView?.frame = CGRect(x: 0, y: 0, width: Int(AppConstants.ViewFrames.Width.categoriesHeader), height: AppConstants.ViewFrames.Height.categoriesHeader)
         categoriesHeaderView?.registerCollectionViewCells()
+        categoriesHeaderView?.delegate = self
         categoriesTableView.tableHeaderView = categoriesHeaderView
         categoriesTableView.tableFooterView = UIView()
         categoriesHeaderView?.rankings = homeViewModel.rankings
@@ -69,5 +71,13 @@ extension HomeViewController: CategoryTableViewCellDelegate {
         let categoryDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: AppConstants.ViewIdentifiers.categoryDetailVC) as? CategoryDetailViewController
         categoryDetailVC?.categoryViewModel.category = category
         navigator?.showCategoryDetailView(categoryView: categoryDetailVC!)
+    }
+}
+
+extension HomeViewController: CategoriesHeaderViewDelegate {
+    func didSelectProduct(product: Product) {
+        let productDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: AppConstants.ViewIdentifiers.productDetailVC) as? ProductDetailViewController
+        productDetailVC?.productDetailViewModel.product = product
+        navigator?.showProductDetailView(productDetailView: productDetailVC!)
     }
 }

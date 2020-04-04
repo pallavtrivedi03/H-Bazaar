@@ -94,7 +94,7 @@ final class CoreDataManager {
             variant.id = Int16(variantResponse.id ?? 0)
             variant.size = Int16(variantResponse.size ?? 0)
             variant.color = variantResponse.color ?? ""
-            
+            variant.price = Int64(variantResponse.price ?? 0)
             variants.append(variant)
         }
         

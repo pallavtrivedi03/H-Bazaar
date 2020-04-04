@@ -8,16 +8,21 @@
 
 import UIKit
 
+protocol CategoriesHeaderViewDelegate : class {
+    func didSelectProduct(product: Product)
+}
+
 class CategoriesHeaderView: UIView {
     
     @IBOutlet weak var rankingHeaderCollectionView: UICollectionView!
     @IBOutlet weak var rankingProductsCollectionView: UICollectionView!
     
+    weak var delegate: CategoriesHeaderViewDelegate?
     var rankings: [Ranking]! {
         didSet {
             if rankings.count > 0 {
                 rankingHeaderCollectionView.reloadData()
-                rankingProductsCollectionView.reloadData()
+                rankingProductsCollectionView.reloadData()                
             }
         }
     }
@@ -41,9 +46,9 @@ class CategoriesHeaderView: UIView {
         let products = rankings[selectedRankIndex].products?.allObjects as! [Product]
         switch selectedRankIndex {
         case 0:
-            return "\(products[index].shares) shares"
-        case 1:
             return "\(products[index].orders) orders"
+        case 1:
+            return "\(products[index].shares) shares"
         case 2:
             return "\(products[index].views) views"
         default:
@@ -92,6 +97,10 @@ extension CategoriesHeaderView: UICollectionViewDelegate, UICollectionViewDataSo
             let scrollRect = CGRect(x: 0, y: rankingProductsCollectionView.frame.origin.y, width: rankingProductsCollectionView.frame.width, height: rankingProductsCollectionView.frame.height)
             rankingProductsCollectionView.scrollRectToVisible(scrollRect, animated: true)
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        } else {
+            if let products = rankings[selectedRankIndex].products?.allObjects as? [Product] {
+                delegate?.didSelectProduct(product: products[indexPath.row])
+            }
         }
     }
 }

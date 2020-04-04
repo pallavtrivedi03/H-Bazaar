@@ -11,6 +11,7 @@ import Foundation
 protocol IHomeViewNavigator {
     init(homeView: HomeViewController)
     func showCategoryDetailView(categoryView: CategoryDetailViewController)
+    func showProductDetailView(productDetailView: ProductDetailViewController)
 }
 
 class HomeViewNavigator: IHomeViewNavigator {
@@ -23,5 +24,9 @@ class HomeViewNavigator: IHomeViewNavigator {
     
     func showCategoryDetailView(categoryView: CategoryDetailViewController) {
         self.homeView.navigationController?.pushViewController(categoryView, animated: true)
-    }    
+    }
+    
+    func showProductDetailView(productDetailView: ProductDetailViewController) {
+        self.homeView.navigationController?.pushViewController(productDetailView, animated: true)
+    }
 }

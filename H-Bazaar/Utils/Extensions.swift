@@ -15,4 +15,11 @@ extension UIColor {
                        blue: .random(in: 0...1),
                        alpha: 0.5)
     }
+    
+    static var randomDark: UIColor {
+           return UIColor(red: .random(in: 0...1),
+                          green: .random(in: 0...1),
+                          blue: .random(in: 0...1),
+                          alpha: 1)
+       }
 }

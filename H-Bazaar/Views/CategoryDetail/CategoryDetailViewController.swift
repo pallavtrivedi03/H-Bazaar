@@ -13,6 +13,9 @@ class CategoryDetailViewController: UIViewController {
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var productCollectionView: UICollectionView!
     @IBOutlet weak var subCategoriesCollectionView: UICollectionView!
+    
+    private var navigator: CategoryDetailViewNavigator?
+    
     let categoryViewModel = CategoryViewModel()
     
     var selectedParentCategoryIndex = 0
@@ -20,6 +23,7 @@ class CategoryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = categoryViewModel.category?.name ?? ""
+        navigator = CategoryDetailViewNavigator(categoryView: self)
         registerCollectionViewCells()
         subCategoriesCollectionView.reloadData()
         productCollectionView.reloadData()
@@ -103,7 +107,9 @@ extension CategoryDetailViewController: UICollectionViewDelegate, UICollectionVi
             productCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         } else {
-            //TOOD: Open product detail screen
+            let productDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: AppConstants.ViewIdentifiers.productDetailVC) as? ProductDetailViewController
+            productDetailVC?.productDetailViewModel.product = categoryViewModel.grandChildCategory?.products?.allObjects[indexPath.row] as? Product
+            navigator?.showProductDetailView(productDetailView: productDetailVC!)
         }
     }
     

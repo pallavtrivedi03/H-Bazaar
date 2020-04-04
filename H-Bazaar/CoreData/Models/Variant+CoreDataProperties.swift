@@ -1,9 +1,8 @@
 //
 //  Variant+CoreDataProperties.swift
-//  H-Bazaar
+//  
 //
-//  Created by Pallav Trivedi on 03/04/20.
-//  Copyright © 2020 Pallav Trivedi. All rights reserved.
+//  Created by Pallav Trivedi on 04/04/20.
 //
 //
 
@@ -19,7 +18,7 @@ extension Variant {
 
     @NSManaged public var color: String?
     @NSManaged public var id: Int16
-    @NSManaged public var price: Int16
+    @NSManaged public var price: Int64
     @NSManaged public var size: Int16
     @NSManaged public var product: Product?
 
